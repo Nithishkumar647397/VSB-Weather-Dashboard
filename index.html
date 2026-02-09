@@ -652,7 +652,7 @@
       padding: 4px 24px;
       border-radius: 10px;
       width: fit-content;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
 
@@ -809,6 +809,9 @@
         <div class="hourly-wrapper">
           <div class="chart-container" id="chartContainer">
             <div class="loading-spinner"></div>
+            <div class="chart-placeholder">Chart not available</div>
+            <div>
+            </div>
           </div>
         </div>
       </section>
@@ -1152,8 +1155,8 @@
       const containerWidth = container.getBoundingClientRect().width || minWidth;
       const itemWidth = containerWidth / hourlyData.length;
 
-      const height = 150;
-      const padding = 18;
+      const height = 160;
+      const padding = 15;
 
       const temps = hourlyData.map(d => d.temp);
       const maxTemp = Math.max(...temps) + 1;
@@ -1178,7 +1181,7 @@
       }
 
       const svgHTML = `
-        <svg class="chart-svg" viewBox="0 0 ${containerWidth} ${height + 80}" preserveAspectRatio="none">
+        <svg class="chart-svg" viewBox="0 0 ${containerWidth} 220" preserveAspectRatio="none">
           <defs>
             <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#ffa500" stop-opacity="1" />
@@ -1186,7 +1189,7 @@
             </linearGradient>
           </defs>
           <path d="${pathD}" fill="none" stroke="#ffa500" stroke-width="3" />
-          <path d="${pathD} L ${points[points.length - 1].x} ${height + 50} L ${containerWidth} ${height + 50} L 0 ${height + 50} L ${points[0].x} ${height + 50} Z"
+          <path d="${pathD} L ${points[points.length - 1].x} 220 L ${containerWidth} 220 L 0 220 L ${points[0].x} 220 Z"
                 fill="url(#lineGradient)" opacity="0.2" />
           ${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#fff" stroke="#ffa500" stroke-width="2" />`).join('')}
         </svg>
