@@ -23,7 +23,7 @@
       --danger: #ff3366;
 
       /* LOGO SIZE */
-      --logo-size: 140px;
+      --logo-size: 150px;
     }
 
     * { margin: 0; padding:0; box-sizing: border-box; }
@@ -38,8 +38,10 @@
       min-height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      height: 100vh;
-      overflow: hidden;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
     }
 
     /* --- ANIMATED BACKGROUND --- */
@@ -78,10 +80,10 @@
 
     /* --- LAYOUT --- */
     .dashboard-container {
-      max-width: 1800px;
-      width: 95%;
+      max-width: 2400px;
+      width: 98%;
       margin: 0 auto;
-      padding: 6px 16px;
+      padding: 10px 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -126,9 +128,9 @@
     /* Left logo: logo only (no box) */
     .header-logo {
   
-      width: 90px;
-      height: 90px;      /* let height adjust naturally */
-      max-height: 120px; /* prevents tall logo */
+      width: var(--logo-size);
+      height: var(--logo-size);      /* let height adjust naturally */
+      max-height: 160px; /* prevents tall logo */
 
 
       object-fit: contain;
@@ -141,8 +143,6 @@
     .logo-circle {
       width: var(--logo-size);
       height: var(--logo-size);
-      width: 90px;
-      height: 90px;
       border-radius: 50%;
       overflow: hidden;
       background: transparent;
@@ -166,7 +166,7 @@
 
     .header-bar h1 {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 2.6rem;
+      font-size: 4.2rem;
       text-transform: uppercase;
       letter-spacing: 4px;
       background: linear-gradient(to right, #fff, #00f2ff);
@@ -177,7 +177,7 @@
     }
 
     .header-bar h2 {
-      font-size: 1.2rem;
+      font-size: 1.8rem;
       letter-spacing: 2px;
       color: var(--primary-glow);
       text-transform: uppercase;
@@ -389,7 +389,7 @@
     }
 
     .big-temp {
-      font-size: 4.5rem;
+      font-size: 6rem;
       font-weight: 700;
       line-height: 1;
       background: -webkit-linear-gradient(#fff, #b3e5fc);
@@ -397,10 +397,10 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .temp-unit { font-size: 2rem; opacity: 0.7; }
+    .temp-unit { font-size: 3rem; opacity: 0.7; }
 
     .condition-text {
-      font-size: 1.6rem;
+      font-size: 2rem;
       color: var(--primary-glow);
       font-weight: 500;
       text-transform: uppercase;
@@ -442,8 +442,8 @@
       margin-bottom: 6px;
     }
 
-    .metric-val { font-size: 1.2rem; font-weight: 700; margin-bottom: 3px; }
-    .metric-lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+    .metric-val { font-size: 1.6rem; font-weight: 700; margin-bottom: 3px; }
+    .metric-lbl { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; }
 
     /* --- FORECASTS --- */
     .forecasts-container {
@@ -459,7 +459,7 @@
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: 15px;
-      padding: 12px;
+      padding: 5px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
       transition: transform 0.3s;
       position: relative;
@@ -472,26 +472,26 @@
     }
 
     .forecast-header {
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       color: var(--primary-glow);
       margin-bottom: 10px;
       text-transform: uppercase;
       font-weight: 600;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 8px;
+      padding-bottom: 05px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 0px;
     }
 
     .forecast-badge {
       font-size: 0.7rem;
       background: rgba(0, 242, 255, 0.2);
-      padding: 2px 8px;
-      border-radius: 10px;
+      padding: 19px 10px;
+      border-radius: 0px;
       color: var(--primary-glow);
-      white-space: nowrap;
+      white-space: 10px;
     }
 
     .hourly-wrapper { 
@@ -506,7 +506,7 @@
 
     .chart-container {
       position: relative;
-      height: 180px;
+      height: 220px;
       width: 100%;
       display: flex;
       align-items: flex-end;
@@ -526,14 +526,14 @@
       display: flex;
       width: 100%;
       z-index: 2;
-      gap: 4px;
+      gap: 0;
     }
 
     .chart-col {
       flex: 1;
       min-width: 0;
       height: 70px;
-      border-radius: 12px;
+      border-radius: 0;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -548,7 +548,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 12px;
+      border-radius: 0;
       z-index: -1;
       opacity: 0.85;
     }
@@ -582,6 +582,7 @@
       max-height: none;
       overflow: hidden;
     }
+    
 
     .daily-row {
       display: flex;
@@ -589,8 +590,15 @@
       padding: 10px 12px;
       background: rgba(255, 255, 255, 0.03);
       border-radius: 8px;
-      font-size: 0.88rem;
+      font-size: 1.1rem;
       transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .daily-row:hover {
@@ -644,7 +652,7 @@
       padding: 4px 24px;
       border-radius: 10px;
       width: fit-content;
-      margin-top: -3%;
+      margin-top: 10px;
     }
 
 
@@ -807,8 +815,8 @@
 
       <section class="glass-card">
         <div class="forecast-header">
-          <span><i class="fas fa-calendar-alt"></i> 4-Day Outlook</span>
-          <span class="forecast-badge">4 DAYS</span>
+          <span><i class="fas fa-calendar-alt"></i> 7-Day Outlook</span>
+          <span class="forecast-badge">7 DAYS</span>
         </div>
         <div class="daily-list" id="dailyList">
           <div class="loading-spinner"></div>
@@ -829,7 +837,7 @@
       cacheTimeout: 300000
     };
 
-    const OUTLOOK_DAYS = 4;
+    const OUTLOOK_DAYS = 7;
 
     let hourlyData = [];
     let currentWeatherData = null;
@@ -1123,7 +1131,7 @@
         const low = convertTemp(data.daily.temperature_2m_min[index]);
 
         dailyContainer.innerHTML += `
-          <div class="daily-row">
+          <div class="daily-row" style="animation-delay: ${index * 0.1}s">
             <div style="flex:1">${dayName}</div>
             <i class="fas ${icon}" style="color:var(--primary-glow); margin:0 10px;"></i>
             <div>${high}° / <span style="opacity:0.6">${low}°</span></div>
@@ -1138,12 +1146,13 @@
       const container = document.getElementById('chartContainer');
       
       const minWidth = hourlyData.length * 70; 
-      container.style.width = `${Math.max(minWidth, container.parentElement.clientWidth)}px`;
+      container.style.minWidth = `${minWidth}px`;
+      container.style.width = '100%';
       
-      const containerWidth = Math.max(1, container.getBoundingClientRect().width);
+      const containerWidth = container.getBoundingClientRect().width || minWidth;
       const itemWidth = containerWidth / hourlyData.length;
 
-      const height = 110;
+      const height = 150;
       const padding = 18;
 
       const temps = hourlyData.map(d => d.temp);
@@ -1177,7 +1186,7 @@
             </linearGradient>
           </defs>
           <path d="${pathD}" fill="none" stroke="#ffa500" stroke-width="3" />
-          <path d="${pathD} L ${points[points.length - 1].x} ${height + 50} L ${points[0].x} ${height + 50} Z"
+          <path d="${pathD} L ${points[points.length - 1].x} ${height + 50} L ${containerWidth} ${height + 50} L 0 ${height + 50} L ${points[0].x} ${height + 50} Z"
                 fill="url(#lineGradient)" opacity="0.2" />
           ${points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#fff" stroke="#ffa500" stroke-width="2" />`).join('')}
         </svg>
